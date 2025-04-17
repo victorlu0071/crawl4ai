@@ -1,0 +1,223 @@
+# Content from: https://www.pythonguis.com/faq/how-can-i-import-a-pyqtgraph-histogram-lut-item-with-ui/
+
+[](https://www.pythonguis.com/faq/how-can-i-import-a-pyqtgraph-histogram-lut-item-with-ui/#menu)
+  * Python GUIs
+  * [Home](https://www.pythonguis.com/)
+  * [Latest Articles](https://www.pythonguis.com/latest/)
+  * [FAQ](https://www.pythonguis.com/faq/)
+  * [Forum ](https://forum.pythonguis.com/)
+  * [PyQt5 ](https://www.pythonguis.com/pyqt5/)
+  * [PyQt5 Tutorial ](https://www.pythonguis.com/pyqt5-tutorial/)
+  * Basics
+  * [Create a PyQt5 app](https://www.pythonguis.com/tutorials/creating-your-first-pyqt-window/)
+  * [PyQt5 Signals](https://www.pythonguis.com/tutorials/pyqt-signals-slots-events/)
+  * [PyQt5 Widgets](https://www.pythonguis.com/tutorials/pyqt-basic-widgets/)
+  * [PyQt5 Layouts](https://www.pythonguis.com/tutorials/pyqt-layouts/)
+  * [PyQt5 Menus](https://www.pythonguis.com/tutorials/pyqt-actions-toolbars-menus/)
+  * [PyQt5 Dialogs](https://www.pythonguis.com/tutorials/pyqt-dialogs/)
+  * [Multi-window PyQt5](https://www.pythonguis.com/tutorials/creating-multiple-windows/)
+  * Qt Designer
+  * [First Qt Designer app](https://www.pythonguis.com/tutorials/first-steps-qt-creator/)
+  * [Qt Designer Layouts](https://www.pythonguis.com/tutorials/qt-designer-gui-layout/)
+  * [Dialogs in Qt Designer](https://www.pythonguis.com/tutorials/creating-dialogs-qt-designer/)
+  * [The QResource System in PyQt5](https://www.pythonguis.com/tutorials/qresource-system/)
+  * Concurrency
+  * [Long-running tasks](https://www.pythonguis.com/tutorials/multithreading-pyqt-applications-qthreadpool/)
+  * [External processes](https://www.pythonguis.com/tutorials/qprocess-external-programs/)
+  * Model Views
+  * [Model Views](https://www.pythonguis.com/tutorials/modelview-architecture/)
+  * [Pandas & Numpy Views](https://www.pythonguis.com/tutorials/qtableview-modelviews-numpy-pandas/)
+  * Plotting
+  * [Plotting With PyQtGraph and PyQt5](https://www.pythonguis.com/tutorials/plotting-pyqtgraph/)
+  * [Plotting With Matplotlib and PyQt5](https://www.pythonguis.com/tutorials/plotting-matplotlib/)
+  * QGraphics
+  * [Vector Graphics](https://www.pythonguis.com/tutorials/pyqt-qgraphics-vector-graphics/)
+  * Custom Widgets
+  * [Bitmap Graphics](https://www.pythonguis.com/tutorials/bitmap-graphics/)
+  * [Custom Widgets](https://www.pythonguis.com/tutorials/creating-your-own-custom-widgets/)
+  * [Animating Widgets](https://www.pythonguis.com/tutorials/qpropertyanimation/)
+  * [Custom Designer Widgets](https://www.pythonguis.com/tutorials/embed-pyqtgraph-custom-widgets-qt-app/)
+  * Further
+  * [Modifying Signals](https://www.pythonguis.com/tutorials/transmitting-extra-data-qt-signals/)
+  * [Taskbar apps](https://www.pythonguis.com/tutorials/system-tray-mac-menu-bar-applications-pyqt/)
+  * Packaging
+  * [Packaging for Windows](https://www.pythonguis.com/tutorials/packaging-pyqt5-pyside2-applications-windows-pyinstaller/)
+  * [Packaging for macOS](https://www.pythonguis.com/tutorials/packaging-pyqt5-applications-pyinstaller-macos-dmg/)
+  * [Packaging for Linux](https://www.pythonguis.com/tutorials/packaging-pyqt5-applications-linux-pyinstaller/)
+  * [Packaging QResources](https://www.pythonguis.com/tutorials/packaging-data-files-pyqt5-with-qresource-system/)
+  * [Packaging with fbs](https://www.pythonguis.com/tutorials/packaging-pyqt5-apps-fbs/)
+  * Resources
+  * [Books](https://www.pythonguis.com/books/)
+  * Services
+  * [Consulting](https://www.pythonguis.com/hire/)
+  * [1:1 Coaching](https://www.pythonguis.com/live/)
+  * [Contact](https://www.pythonguis.com/contact/)
+  * [About](https://www.pythonguis.com/about/)
+  * Libraries
+  * [PyQt6](https://www.pythonguis.com/pyqt6/)
+  * [PySide6](https://www.pythonguis.com/pyside6/)
+  * [Streamlit](https://www.pythonguis.com/streamlit/)
+  * [Tkinter](https://www.pythonguis.com/tkinter/)
+  * [PySide2](https://www.pythonguis.com/pyside2/)
+
+
+  * Search Python GUIs
+
+
+[](https://www.pythonguis.com "Python GUIs")
+Search Python GUIs
+# How can I import a pyqtgraph histogram LUT item with .ui
+by [Martin Fitzpatrick](https://www.pythonguis.com/authors/martin-fitzpatrick/) Last updated Nov 04 PyQt5 [ FAQ ](https://www.pythonguis.com/faq/)
+I_Stefanis | 2020-07-22 14:03:39 UTC | #1
+Hello, I'm a bit confused about how I can import into my code a HistogramLUTItem() with the use of an .ui file and not directly.
+mike2750 | 2020-07-23 03:13:37 UTC | #2
+Can you provide an example of the minimal working example of what your trying to do and what you have done so far?
+I have loaded ui files in a dialog like the below but came can be done in main.
+python ```
+class
+class AboutDialog(QDialog):
+  def __init__(self, *args, **kwargs):
+    super().__init__(*args, **kwargs)
+    about_ui = os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'ui', "about.ui")
+    # about_ui = QFile(":/ui/ui/about.ui")
+    uic.loadUi(about_ui, self)
+    self.about_app_logo.setPixmap(
+      QPixmap(os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'images', 'chevron_logo.png')))
+    # self.about_app_logo.setPixmap(QPixmap(":/forum/images/forum/images/chevron_logo.png"))
+    self.about_version_value.setText(version)
+    self.about_license_type_value.setText(license_type)
+    self.show()
+
+```
+
+Then in the main:
+python ```
+def about_dialog(self):
+  about_wizard = AboutDialog(self)
+  # about_wizard.show()
+  pass
+
+```
+
+Then you can dynamically load the content into from your function into a widget or whatever setup in the UI file. I do this for multiple dialogs and windows in my app. If you can provide more to work with and what you have tried im sure we can give you more specific guidance. 
+[Create GUI Applications with Python & Qt6](https://www.pythonguis.com/pyqt6-book/) _by Martin Fitzpatrick_ — (PyQt6 Edition) The hands-on guide to making apps with Python — Over 10,000 copies sold! 
+[More info ](https://www.pythonguis.com/pyqt6-book/) [Get the book](https://secure.pythonguis.com/01hf77bjcgxgghzq88pwh1nqe2/)
+If this for the main window a basic example you can use with a mainwindow.ui file is below.
+python ```
+#!/usr/bin/env python3
+# encoding: utf-8
+from PyQt5 import uic, QtWidgets
+import sys
+qtCreatorFile = os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), "mainwindow.ui") # Type your file path
+Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
+
+class build(Ui_MainWindow, QtWidgets.QMainWindow):
+  def __init__(self, parent=None):
+    QtWidgets.QMainWindow.__init__(self)
+    Ui_MainWindow.__init__(self)
+    self.setupUi(self)
+
+def start():
+  app = QtWidgets.QApplication(sys.argv)
+  bld = build()
+  bld.show()
+  sys.exit(app.exec_())
+
+if __name__ == '__main__':
+  start()
+
+```
+
+I_Stefanis | 2020-07-23 14:20:53 UTC | #3
+ok. thank you for your time.
+let me make it more clear.
+I followed the instructions of this post for including pyqtgraph widgets: https://www.pythonguis.com/courses/qt-creator/embed-pyqtgraph-custom-widgets-qt-app/
+I have created a gui with the help of qt Designer. I want to include pyqtgraph widgets into my gui. The inclusion of plot widgets with statistical curves renders ok. The widgets are included with the use of an external .uic file. the name of the HistogramLut widget is "wu" and I use it with the function findChild(). My problem is that I don't know if I'm doing correctly the histogramLUT widget inclusion into the gui. I mean the step of promoting the qwidget to HistogramLUT item. I include also a snapshot of qtDesigner and also of my gui.
+class MainWindow(QMainWindow, ProcessDicom): ... ... uic.loadUi('CEtb26.ui', self) ... ... self.im1 = pg.ImageItem(self.image1,levels=[0, 255]) self.histWindow = self.findChild(PlotWidget, 'wu') self.histWindow.setImageItem(self.im1)
+but the only thing I get is an empty plot!
+![scrnsht0|661x500](https://www.pythonguis.com/static/faq/forum/how-can-i-import-a-pyqtgraph-histogram-lut-item-with-ui/3Rvgx5QFZ6zSHZ3fz9aeuX9CEl.png) !
+![scrnsht1|690x454](https://www.pythonguis.com/static/faq/forum/how-can-i-import-a-pyqtgraph-histogram-lut-item-with-ui/1YVUAz85i0zGEqMa3SWOigeo9ys.png) !
+Best regards 
+[Packaging Python Applications with PyInstaller](https://www.pythonguis.com/packaging-book/) _by Martin Fitzpatrick_ — This step-by-step guide walks you through packaging your own Python applications from simple examples to complete installers and signed executables. 
+[More info ](https://www.pythonguis.com/packaging-book/) [Get the book](https://secure.pythonguis.com/01hf77hrbf5v8z5kjtwbhmbwjz/)
+I_Stefanis | 2020-07-24 10:55:33 UTC | #4
+Finally the solution was:
+Into qt Designer:
+  1. create a QWidget at the point where HistogramLUTWidget will appear
+  2. right click and promote it
+  3. set Promoted Class Name: HistogramLUTWidget
+
+
+set Promoted Class Header: pyqtgraph.widgets.HistogramLUTWidget
+4.save it
+  1. In my code :
+
+
+self.wu = pg.HistogramLUTWidget(fillHistogram=False)
+![sdsds|689x359](https://www.pythonguis.com/static/faq/forum/how-can-i-import-a-pyqtgraph-histogram-lut-item-with-ui/aiXwg7zg5mdtnG5pslBD9YQyq2X.png)
+everything worked!
+1:1 Coaching & Tutoring for your Python GUIs project
+[![Martin Fitzpatrick Python GUIs Coaching & Training](https://www.pythonguis.com/static/theme/images/products/coaching.jpg)](https://calendly.com/martinfitzpatrick/60min-python-guis-coaching)
+[60 mins ($195)](https://cal.com/mfitzp/60min-python-guis-coaching/) [Book Now](https://www.pythonguis.com/live/)
+1:1 Python GUIs Coaching & Training
+**Comprehensive code review** • **Bugfixes** & improvements • **Maintainability** advice and **architecture** improvements • **Design and usability** assessment • Suggestions and tips to **expand your knowledge** • **Packaging and distribution** help for Windows, Mac & Linux • [Find out more.](https://www.pythonguis.com/live)
+Mark As Complete 
+[![Martin Fitzpatrick](https://www.pythonguis.com/static/theme/images/authors/martin-fitzpatrick.jpg)](https://www.pythonguis.com/authors/martin-fitzpatrick/)
+**How can I import a pyqtgraph histogram LUT item with .ui** was written by [Martin Fitzpatrick](https://www.pythonguis.com/authors/martin-fitzpatrick/) . 
+Martin Fitzpatrick has been developing Python/Qt apps for 8 years. Building desktop applications to make data-analysis tools more user-friendly, Python was the obvious choice. Starting with Tk, later moving to wxWidgets and finally adopting PyQt. Martin founded PythonGUIs to provide easy to follow GUI programming tutorials to the Python community. He has written a number of popular [https://www.martinfitzpatrick.com/browse/books/](https://www.pythonguis.com/faq/how-can-i-import-a-pyqtgraph-histogram-lut-item-with-ui/Python books) on the subject. 
+**How can I import a pyqtgraph histogram LUT item with .ui** was published in [faq](https://www.pythonguis.com/faq/) on July 22, 2020 (updated November 04, 2024) . Feedback & Corrections [can be submitted here](https://tally.so/r/wbvxNE). 
+[ pyqt5](https://www.pythonguis.com/topics/pyqt5/) [pyqt](https://www.pythonguis.com/topics/pyqt/) [pyqtgraph](https://www.pythonguis.com/topics/pyqtgraph/) [qtdesigner](https://www.pythonguis.com/topics/qtdesigner/) [python](https://www.pythonguis.com/topics/python/) [qt](https://www.pythonguis.com/topics/qt/) [qt5](https://www.pythonguis.com/topics/qt5/) [ data-science](https://www.pythonguis.com/topics/data-science/)
+  * [](https://www.pythonguis.com/ "Python GUIs")
+  * [Databases & SQL](https://www.pythonguis.com/topics/databases/)
+  * [Learn the fundamentals](https://www.pythonguis.com/topics/foundation/)
+  * [Where do I begin?](https://www.pythonguis.com/topics/getting-started/)
+  * [Data Science](https://www.pythonguis.com/topics/data-science/)
+  * [Packaging & Distribution](https://www.pythonguis.com/topics/packaging/)
+  * [QML/QtQuick](https://www.pythonguis.com/topics/qml/)
+  * [Raspberry Pi](https://www.pythonguis.com/topics/raspberry-pi/)
+  * [Games](https://www.pythonguis.com/topics/games/)
+  * [Intermediate Tutorials](https://www.pythonguis.com/topics/intermediate/)
+
+
+  * **Sections**
+  * [Installation](https://www.pythonguis.com/installation/)
+  * [First steps with PySide6](https://www.pythonguis.com/tutorials/pyside6-creating-your-first-window/)
+  * [First steps with PyQt6](https://www.pythonguis.com/tutorials/pyqt6-creating-your-first-window/)
+  * [Example Python Apps](https://www.pythonguis.com/examples/)
+  * [Widget Library](https://www.pythonguis.com/widgets/)
+  * [Simple PyQt6 & PySide6 documentation](https://www.pythonguis.com/docs/)
+  * [Reusable code & snippets](https://www.pythonguis.com/code/)
+  * [Frequently Asked Questions](https://www.pythonguis.com/faq/)
+
+
+  * **Tutorials**
+  * [Which Python GUI library?](https://www.pythonguis.com/faq/which-python-gui-library/)
+  * [PyQt5 tutorial](https://www.pythonguis.com/pyqt5-tutorial/)
+  * [PyQt6 tutorial](https://www.pythonguis.com/pyqt6-tutorial/)
+  * [PySide2 tutorial](https://www.pythonguis.com/pyside2-tutorial/)
+  * [PySide6 tutorial](https://www.pythonguis.com/pyside6-tutorial/)
+  * [Tkinter tutorial](https://www.pythonguis.com/tkinter-tutorial/)
+  * [Latest articles](https://www.pythonguis.com/blog/)
+
+
+  * **Books & Downloads**
+  * [ Your Downloads](https://www.martinfitzpatrick.com/library/)
+  * [PyQt5 Book](https://www.pythonguis.com/pyqt5-book/) / [PySide2 Book](https://www.pythonguis.com/pyside2-book/)
+  * [PyQt6 Book](https://www.pythonguis.com/pyqt6-book/) / [PySide6 Book](https://www.pythonguis.com/pyside6-book/)
+  * [Python Packaging Book](https://www.pythonguis.com/packaging-book/)
+  * [ Book Source Code](https://www.pythonguis.com/books/downloads/)
+  * [ PyQt6 Video Course](https://www.martinfitzpatrick.com/pyqt6-crash-course/)
+
+
+  * **Community & Consulting**
+  * [ Python GUIS Forum ](https://forum.pythonguis.com/)
+  * [ Feedback & Corrections](https://tally.so/r/wbvxNE)
+  * [Consulting](https://www.pythonguis.com/hire/)
+  * [Mentoring](https://www.pythonguis.com/live/)
+  * [Contact me](https://www.martinfitzpatrick.com/contact)
+  * [Licensing, Privacy & Legal](https://www.martinfitzpatrick.com/legal)
+
+
+[](https://twitter.com/pythonguis) [](https://github.com/pythonguis) [](https://www.facebook.com/pythonguis) [](https://www.youtube.com/channel/UCMW4KwSlygaDef0tgqPjbRQ) [](https://www.linkedin.com/company/pythonguis/)
+[Python GUIs](https://www.pythonguis.com/) Copyright ©2014-2025 [ Martin Fitzpatrick](https://www.martinfitzpatrick.com)
+Tutorials CC-BY-NC-SA [Sitemap](https://www.pythonguis.com/sitemap/) [Changelog](https://www.pythonguis.com/changelog/) Public code [BSD](https://opensource.org/licenses/BSD-2-Clause) & [MIT](https://opensource.org/licenses/MIT)
