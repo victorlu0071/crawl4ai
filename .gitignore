@@ -1,0 +1,6 @@
+# Crawl4AI output directories
+*_knowledgebase/
+crawl_results*/
+
+# Downloaded documentation
+docs_crawl4ai_com_knowledgebase/ 
